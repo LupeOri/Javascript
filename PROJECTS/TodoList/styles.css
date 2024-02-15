@@ -54,9 +54,10 @@ body {
   li {
     list-style: none;
     background-color: lightgray;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 15px;
     display: flex;
+    justify-content: space-between
   }
   
   li p {
@@ -101,4 +102,13 @@ body {
   
   .empty {
     color: darkslategrey;
+  }
+
+  .deleteButton{
+    padding: 5px 15px;
+    border: none;
+    color: white;
+    background-color: red;
+    outline: none;
+    margin-left: 160px;
   }
