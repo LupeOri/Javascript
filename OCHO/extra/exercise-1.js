@@ -1,3 +1,4 @@
+
 const body$$ = document.querySelector('body');
 const baseUrl = 'https://breakingbadapi.com/api/characters';
 
