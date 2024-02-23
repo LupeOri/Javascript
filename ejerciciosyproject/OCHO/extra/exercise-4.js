@@ -27,7 +27,7 @@ async function planetsApp() {
             planetDiv.appendChild(planetNameElement);
             planetDiv.appendChild(planetImageElement);
             planetDiv.addEventListener('click', async () => {
-                charactersDiv.textContent = ''; // Limpiamos el contenido
+                charactersDiv.textContent = ''; 
                 const characters = await getData(`${baseUrlCharacters}?idPlanet=${planet.id}`);
                 for (let j = 0; j < characters.length; j++) {
                     const character = characters[j];
@@ -50,12 +50,34 @@ async function planetsApp() {
                     });
                     charactersDiv.appendChild(characterDiv);
                 }
+                searcher(); 
             });
             planetsDiv.appendChild(planetDiv);
         }
     } catch (error) {
         console.error(error);
     }
+}
+
+function searcher() {
+    const searcherElement = document.createElement('input');
+    searcherElement.setAttribute('type', 'text');
+    searcherElement.setAttribute('placeholder', 'Buscar personaje por nombre...');
+    searchDiv.appendChild(searcherElement);
+
+    searcherElement.addEventListener('input', () => {
+        const searchTerm = searcherElement.value.trim().toLowerCase();
+        const characterDivs = charactersDiv.querySelectorAll('div');
+
+        characterDivs.forEach(characterDiv => {
+            const characterName = characterDiv.querySelector('h2').textContent.toLowerCase();
+            if (characterName.includes(searchTerm)) {
+                characterDiv.style.display = 'block';
+            } else {
+                characterDiv.style.display = 'none';
+            }
+        });
+    });
 }
 
 planetsApp();
